@@ -1,5 +1,6 @@
 function _PSMarks_Initalize() {
     $script:_marksPath = Get-ProfileDataFile bookmarks "PSMarks"
+    $script:_marksPath = Join-Path -Path $HOME -ChildPath $script:_marksPath
     $script:_knownBookmarks = Import-PSMarkKeys
 }
 
