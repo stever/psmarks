@@ -1,6 +1,11 @@
 function _PSMarks_Initalize() {
     $script:_marksPath = Get-ProfileDataFile bookmarks "PSMarks"
-    $script:_marksPath = Join-Path -Path $HOME -ChildPath $script:_marksPath
+    if ($([System.Environment]::OSVersion.Platform) -ne "Win32NT") {
+        if ($script:_marksPath -is [array]) {
+            $script:_marksPath = $script:_marksPath[0]
+        }
+        $script:_marksPath = Join-Path -Path $HOME -ChildPath $script:_marksPath
+    }
     $script:_knownBookmarks = Import-PSMarkKeys
 }
 
